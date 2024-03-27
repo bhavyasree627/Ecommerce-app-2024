@@ -3,7 +3,7 @@ import colors from 'colors';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import connectDB from "./config/db.js";
-
+import authRoutes from './routes/authRoute.js';
 //configure env
 dotenv.config();
 
@@ -17,6 +17,8 @@ const app = express()
 app.use(morgan('dev')); //log requests to the console
 app.use(express.json()); //parse incoming requests of content type application/json
 
+//routes
+app.use('/api/v1/auth',authRoutes)
 //rest api
 app.get('/', (req, res) => {
     res.send('<h1>This is Ecommerce</h1>')
